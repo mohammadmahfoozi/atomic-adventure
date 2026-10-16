@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ماجراجویی اتمی | علوم هشتم</title>
+<style>
+:root{--navy:#10243b;--blue:#1d4e89;--cyan:#69e0d0;--gold:#ffd166;--paper:#f5f8fc;--ink:#172b42}
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:radial-gradient(circle at top,#244f79,#0b1728 70%);color:#fff;min-height:100vh;padding:18px}
+.wrap{max-width:780px;margin:auto}.hero,.panel{border:1px solid #ffffff25;background:#142c46eF;border-radius:22px;padding:20px;box-shadow:0 15px 45px #0003}
+.hero{text-align:center;margin-bottom:14px}.atom{font-size:64px;filter:drop-shadow(0 0 14px #69e0d0)}h1{margin:6px 0 8px;font-size:clamp(24px,5vw,36px)}p{line-height:1.9}.sub{color:#c7e5ff;margin:0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}.stat{background:#ffffff12;border-radius:14px;padding:12px;text-align:center}.stat b{display:block;font-size:22px;color:var(--gold);margin-top:6px}
+.timerbox{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#ffffff12;border-radius:12px;padding:10px 13px;margin:10px 0}.timertrack{height:8px;background:#ffffff25;border-radius:99px;overflow:hidden;flex:1}.timerbar{height:100%;width:100%;background:var(--gold);transition:width 1s linear}.timertext{font-weight:bold;color:var(--gold);min-width:74px;text-align:center}.progress{height:9px;background:#ffffff20;border-radius:99px;overflow:hidden;margin:12px 0 18px}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),#9df2ff);transition:width .3s}
+.level{display:flex;align-items:center;gap:10px;color:#bce7ff;font-size:14px}.badge{background:#275d7e;padding:6px 10px;border-radius:99px}
+.question{font-size:20px;font-weight:bold;line-height:1.8;margin:12px 0 18px}.options{display:grid;gap:10px}.opt,button{font:inherit;cursor:pointer;border:0;border-radius:13px;padding:13px 15px;transition:transform .12s,background .12s}.opt{text-align:right;background:#f4f8ff;color:#142b44;border:2px solid transparent}.opt:hover:not(:disabled){transform:translateY(-2px);background:#dff7f4}.opt:disabled{cursor:default}.opt.correct{background:#d6f8e5;border-color:#2eaa70}.opt.wrong{background:#ffe1e1;border-color:#d75a5a}
+.feedback{margin-top:14px;border-radius:12px;padding:15px;background:#e8f7ff;color:#12314a;border:2px solid #69c6e8;line-height:1.9;display:none;font-weight:600;box-shadow:0 5px 18px #0002}.mainbtn{background:var(--gold);color:#182b42;font-weight:bold;margin-top:15px;width:100%;font-size:16px}.mainbtn:hover{filter:brightness(1.05);transform:translateY(-1px)}.hidden{display:none!important}.boss{font-size:42px;text-align:center;margin:0}.small{font-size:13px;color:#bdd2e5}.footer{text-align:center;color:#b4c9df;font-size:12px;margin:16px 0}
+@media(max-width:520px){body{padding:10px}.hero,.panel{padding:15px}.stats{gap:6px}.stat{padding:9px 5px}.stat b{font-size:19px}.question{font-size:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="atom">⚛️</div>
+    <h1>ماجراجویی اتمی</h1>
+    <p class="sub">مأموریت نجات هسته • علوم هشتم، فصل ۳</p>
+    <p>از دروازهٔ ذرات عبور کن، سکه جمع کن و در پایان با «باس اتمی» روبه‌رو شو!</p>
+    <button class="mainbtn" style="max-width:260px" onclick="toggleGuide()">📘 راهنمای بازی</button>
+  </header>
+  <section class="panel hidden" id="guide" style="margin-bottom:14px">
+    <h2>📘 راهنمای بازی</h2>
+    <p><b>🎯 هدف:</b> به پرسش‌های علوم پاسخ بده و در پایان باس اتمی را شکست بده.</p>
+    <p><b>🪙 سکه و امتیاز:</b> هر پاسخ درست ۱۰ امتیاز و یک سکه می‌دهد.</p>
+    <p><b>❤️ جان‌ها:</b> بازی را با ۳ جان شروع می‌کنی؛ هر پاسخ نادرست یک جان کم می‌کند. اگر جان‌ها تمام شوند، مأموریت متوقف می‌شود.</p>
+    <p><b>🧭 مرحله‌ها:</b> از شناخت ذرات شروع می‌کنی، سپس هسته، ایزوتوپ‌ها و در پایان نبرد باس اتمی را پشت سر می‌گذاری.</p>
+    <p><b>💡 یادگیری:</b> بعد از هر پاسخ، توضیح کوتاهی می‌بینی. آن را بخوان تا نکتهٔ علمی را بهتر یاد بگیری.</p>
+    <p><b>⏱️ زمان:</b> برای پاسخ به هر سؤال ۳۰ ثانیه فرصت داری؛ اگر زمان تمام شود، یک جان کم می‌شود.</p>
+    <p><b>🔄 شروع دوباره:</b> در پایان بازی می‌توانی همه‌چیز را از اول شروع کنی.</p>
+    <button class="mainbtn" onclick="toggleGuide()">متوجه شدم، بزن بریم!</button>
+  </section>
+
+  <div class="stats">
+    <div class="stat">🪙 سکه‌ها <b id="coins">0</b></div>
+    <div class="stat">❤️ جان‌ها <b id="lives">3</b></div>
+    <div class="stat">⭐ امتیاز <b id="score">0</b></div>
+  </div>
+  <div class="panel">
+    <div id="startScreen" style="text-align:center;padding:18px 0 24px">
+      <div style="font-size:54px">🚀</div>
+      <h2>آمادهٔ عملیات هستی؟</h2>
+      <p>برای هر سؤال ۳۰ ثانیه فرصت داری. پاسخ درست امتیاز و سکه می‌دهد؛ پاسخ اشتباه یا تمام شدن زمان یک جان کم می‌کند.</p>
+      <button class="mainbtn" id="startBtn" onclick="startGame()">🚀 شروع عملیات</button>
+    </div>
+    <div id="gameArea" class="hidden">
+    <div class="level"><span class="badge" id="stageBadge">مرحله ۱ از ۴</span><span id="stageName">دروازهٔ ذرات</span></div>
+    <div class="progress"><div class="bar" id="bar"></div></div>
+    <div class="timerbox"><span>⏱️ زمان باقی‌مانده</span><div class="timertrack"><div class="timerbar" id="timerBar"></div></div><span class="timertext" id="timerText">۳۰ ثانیه</span></div>
+    <div id="game">
+      <div class="question" id="question"></div>
+      <div class="options" id="options"></div>
+      <div class="feedback" id="feedback" role="status"></div>
+      <button class="mainbtn hidden" id="nextBtn">ادامهٔ مأموریت ←</button>
+    </div>
+    <div id="ending" class="hidden" style="text-align:center">
+      <div class="boss" id="endingIcon">🏆</div>
+      <h2 id="endingTitle">مأموریت انجام شد!</h2>
+      <p id="endingText"></p>
+      <button class="mainbtn" onclick="restart()">🔄 شروع دوباره</button>
+    </div>
+    </div>
+  </div>
+  <p class="footer">راهنما: هر پاسخ درست ۱۰ امتیاز و یک سکه دارد؛ پاسخ نادرست یک جان کم می‌کند.</p>
+</div>
+<script>
+const levels = [
+ {name:"دروازهٔ ذرات",qs:[
+  {q:"کدام ذره بار الکتریکی مثبت دارد؟",a:["الکترون","پروتون","نوترون","هسته"],c:1,e:"پروتون بار مثبت دارد."},
+  {q:"کدام ذره بار الکتریکی منفی دارد؟",a:["الکترون","پروتون","نوترون","اتم خنثی"],c:0,e:"الکترون بار منفی دارد."},
+  {q:"کدام ذره بار الکتریکی ندارد؟",a:["پروتون","الکترون","نوترون","یون مثبت"],c:2,e:"نوترون بدون بار الکتریکی است."},
+  {q:"تقریباً تمام جرم اتم در کجا متمرکز است؟",a:["در هسته","در فضای خالی اتم","در الکترون‌ها","در پوستهٔ بیرونی"],c:0,e:"بیشتر جرم اتم مربوط به پروتون‌ها و نوترون‌های هسته است."},
+  {q:"در یک اتم خنثی، تعداد کدام ذره‌ها برابر است؟",a:["پروتون و الکترون","پروتون و نوترون","نوترون و الکترون","دو نوترون"],c:0,e:"در اتم خنثی، بار مثبت پروتون‌ها با بار منفی الکترون‌ها برابر می‌شود."},
+  {q:"بار الکتریکی پروتون و الکترون چه رابطه‌ای دارد؟",a:["هر دو مثبت‌اند","اندازه برابر و علامت مخالف","هر دو منفی‌اند","اندازه و علامت هر دو متفاوت است"],c:1,e:"بار پروتون مثبت و بار الکترون منفی است و اندازهٔ بارشان برابر است."}
+ ]},
+ {name:"هزارتوی هسته",qs:[
+  {q:"پروتون‌ها و نوترون‌ها کجای اتم‌اند؟",a:["در هسته","در لایه‌های الکترونی","بیرون اتم","فقط در یون‌ها"],c:0,e:"پروتون‌ها و نوترون‌ها در هسته قرار دارند."},
+  {q:"عدد اتمی برابر تعداد کدام ذره است؟",a:["نوترون‌ها","پروتون‌ها","پروتون‌ها و نوترون‌ها","الکترون‌ها"],c:1,e:"عدد اتمی، تعداد پروتون‌های هسته است."},
+  {q:"عدد جرمی از جمع چه چیزهایی به دست می‌آید؟",a:["پروتون و الکترون","نوترون و الکترون","پروتون و نوترون","دو الکترون"],c:2,e:"عدد جرمی = تعداد پروتون‌ها + تعداد نوترون‌ها."},
+  {q:"اتمی ۱۲ پروتون و ۱۲ نوترون دارد. عدد جرمی آن چیست؟",a:["۱۲","۲۴","۱۴۴","۶"],c:1,e:"عدد جرمی برابر ۱۲ + ۱۲ = ۲۴ است."},
+  {q:"اگر عدد اتمی اتمی ۹ باشد، چند پروتون دارد؟",a:["۱۸","۹","۳","۰"],c:1,e:"عدد اتمی برابر تعداد پروتون‌های اتم است."},
+  {q:"کدام بخش اتم نسبت به اندازهٔ کل اتم بسیار کوچک است؟",a:["هسته","کل اتم","فضای اطراف هسته","الکترون"],c:0,e:"هسته بسیار کوچک است و بخش بزرگی از حجم اتم فضای اطراف آن است."}
+ ]},
+ {name:"پل ایزوتوپ‌ها",qs:[
+  {q:"اتم‌های یک عنصر در ایزوتوپ‌هایش چه چیزی یکسانی دارند؟",a:["تعداد پروتون‌ها","تعداد نوترون‌ها","عدد جرمی","تعداد لایه‌ها"],c:0,e:"ایزوتوپ‌های یک عنصر تعداد پروتون برابر و نوترون متفاوت دارند."},
+  {q:"دو اتم با ۶ پروتون و به‌ترتیب ۶ و ۸ نوترون چه تفاوتی دارند؟",a:["عدد اتمی","نوع عنصر","عدد جرمی","بار پروتون"],c:2,e:"تعداد پروتون‌ها یکسان است، اما عدد جرمی متفاوت است."},
+  {q:"اگر اتمی ۸ پروتون داشته باشد، عدد اتمی آن چند است؟",a:["۱۶","۸","۴","۲"],c:1,e:"عدد اتمی همیشه برابر تعداد پروتون‌هاست."},
+  {q:"دو ایزوتوپ یک عنصر تعداد نوترون‌هایشان چگونه است؟",a:["حتماً برابر است","متفاوت است","همیشه صفر است","همیشه دو برابر است"],c:1,e:"ایزوتوپ‌ها تعداد پروتون یکسان و تعداد نوترون متفاوت دارند."},
+  {q:"اتمی ۱۳ پروتون و ۱۴ نوترون دارد. عدد جرمی‌اش چند است؟",a:["۱۳","۱۴","۲۷","۱۸۲"],c:2,e:"عدد جرمی برابر ۱۳ + ۱۴ = ۲۷ است."},
+  {q:"تغییر تعداد نوترون‌ها در اتم یک عنصر، چه چیزی را عوض می‌کند؟",a:["هویت عنصر را","عدد اتمی را","عدد جرمی را","بار پروتون را"],c:2,e:"تعداد نوترون متفاوت، عدد جرمی را تغییر می‌دهد؛ تعداد پروتون نوع عنصر را تعیین می‌کند."}
+ ]},
+ {name:"نبرد باس اتمی",boss:true,qs:[
+  {q:"اتمی خنثی ۱۱ پروتون دارد. چند الکترون دارد؟",a:["۱۰","۱۱","۱۲","۲۲"],c:1,e:"در اتم خنثی، تعداد الکترون‌ها و پروتون‌ها برابر است."},
+  {q:"اتمی ۷ پروتون و ۷ نوترون دارد. عدد جرمی آن چند است؟",a:["۷","۱۴","۴۹","۰"],c:1,e:"عدد جرمی = ۷ + ۷ = ۱۴."},
+  {q:"اتمی الکترون از دست بدهد، معمولاً به چه یونی تبدیل می‌شود؟",a:["یون مثبت","یون منفی","نوترون","اتم بدون تغییر بار"],c:0,e:"با از دست دادن الکترون منفی، بار مثبت پیدا می‌کند."},
+  {q:"اتمی الکترون بگیرد، معمولاً چه باری پیدا می‌کند؟",a:["مثبت","منفی","بدون بار","همیشه دو بار مثبت"],c:1,e:"با گرفتن الکترون منفی، اتم معمولاً یون منفی می‌شود."},
+  {q:"اتمی خنثی ۱۵ پروتون دارد. چند الکترون دارد؟",a:["۱۵","۱۴","۱۶","۳۰"],c:0,e:"در اتم خنثی، تعداد الکترون‌ها برابر تعداد پروتون‌هاست."},
+  {q:"اتمی ۱۰ پروتون و ۱۲ نوترون دارد. عدد جرمی‌اش چیست؟",a:["۱۰","۱۲","۲۲","۱۲۰"],c:2,e:"عدد جرمی برابر ۱۰ + ۱۲ = ۲۲ است."}
+ ]}
+];
+let stage=0, qi=0, coins=0, lives=3, score=0, locked=false, started=false, timeLeft=30, timerId=null;
+const $=id=>document.getElementById(id);
+function updateStats(){ $("coins").textContent=coins; $("lives").textContent=lives; $("score").textContent=score; $("bar").style.width=((stage+(qi/levels[stage].qs.length))/levels.length*100)+"%"; }
+function startGame(){started=true;$("startScreen").classList.add("hidden");$("gameArea").classList.remove("hidden");render();}
+function stopTimer(){if(timerId!==null){clearInterval(timerId);timerId=null;}}
+function startTimer(){stopTimer();timeLeft=30;updateTimer();timerId=setInterval(()=>{timeLeft--;updateTimer();if(timeLeft<=0){stopTimer();timeExpired();}},1000);}
+function updateTimer(){$("timerText").textContent=timeLeft+" ثانیه";$ ("timerBar").style.width=(timeLeft/30*100)+"%";$ ("timerBar").style.background=timeLeft<=10?"#ff7777":"var(--gold)";}
+function timeExpired(){if(locked)return;locked=true;lives--;const item=levels[stage].qs[qi];[...$("options").children].forEach((b,j)=>{b.disabled=true;if(j===item.c)b.classList.add("correct")});$("feedback").innerHTML="<strong>⏰ زمان تمام شد!</strong><br><span>📘 پاسخ درست: "+item.a[item.c]+"</span><br><span>📘 توضیح علمی: "+item.e+"</span>";$("feedback").style.display="block";$("nextBtn").classList.remove("hidden");$("nextBtn").textContent=(lives<=0)?"پایان بازی":"ادامهٔ مأموریت ←";updateStats();}
+function render(){
+ stopTimer();locked=false;
+ const L=levels[stage], item=L.qs[qi];
+ $("stageBadge").textContent=`مرحله ${stage+1} از ${levels.length}`;
+ $("stageName").textContent=L.name;
+ $("question").textContent=(L.boss?"👾 باس اتمی: ":"")+item.q;
+ $("options").innerHTML="";
+ item.a.forEach((answer,i)=>{let b=document.createElement("button");b.className="opt";b.textContent=String.fromCharCode(1575+i)+" ) "+answer;b.onclick=()=>choose(i,b);$("options").appendChild(b)});
+ $("feedback").style.display="none";$("nextBtn").classList.add("hidden");$("game").classList.remove("hidden");$("ending").classList.add("hidden");updateStats();startTimer();
+}
+function choose(i,btn){
+ if(locked)return;locked=true;stopTimer();
+ const item=levels[stage].qs[qi], all=[...$("options").children];
+ all.forEach((b,j)=>{b.disabled=true;if(j===item.c)b.classList.add("correct")});
+ if(i===item.c){score+=10;coins++;$("feedback").innerHTML="<strong>✅ آفرین! پاسخ درست است.</strong><br><span>📘 توضیح علمی: "+item.e+"</span>";}
+ else{lives--;btn.classList.add("wrong");$("feedback").innerHTML="<strong>❌ این بار نه!</strong><br><span>📘 توضیح علمی: "+item.e+"</span>";}
+ $("feedback").style.display="block";$("feedback").setAttribute("aria-live","polite");$("nextBtn").classList.remove("hidden");$("feedback").scrollIntoView({behavior:"smooth",block:"nearest"});
+ $("nextBtn").textContent=(lives<=0)?"پایان بازی":"ادامهٔ مأموریت ←";
+ updateStats();
+}
+$("nextBtn").onclick=()=>{
+ if(lives<=0){end(false);return}
+ qi++;
+ if(qi>=levels[stage].qs.length){stage++;qi=0;if(stage>=levels.length){end(true);return}}
+ render();
+};
+function end(win){
+ stopTimer();
+ $("game").classList.add("hidden");$("ending").classList.remove("hidden");$("bar").style.width="100%";
+ if(win){$("endingIcon").textContent="🏆";$("endingTitle").textContent="باس اتمی شکست خورد!";
+ $("endingText").textContent=`تبریک! مأموریت را تمام کردی و ${score} امتیاز و ${coins} سکه گرفتی. حالا قهرمان اتم‌شناسی هستی!`}
+ else{$("endingIcon").textContent="🧪";$("endingTitle").textContent="مأموریت متوقف شد!";
+ $("endingText").textContent=`جان‌هایت تمام شد؛ ${score} امتیاز و ${coins} سکه جمع کردی. نکته‌ها را مرور کن و دوباره تلاش کن!`}
+}
+function restart(){stopTimer();stage=0;qi=0;coins=0;lives=3;score=0;started=true;$("startScreen").classList.add("hidden");$("gameArea").classList.remove("hidden");render()}
+function toggleGuide(){ $("guide").classList.toggle("hidden"); }
+$("gameArea").classList.add("hidden");
+</script>
+</body>
+</html>
